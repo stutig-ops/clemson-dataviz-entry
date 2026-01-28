@@ -2,7 +2,7 @@
 **Graduate Student Data Visualization Competition 2026**
 
 ### 🔗 Live Dashboard
-[Click here to launch the interactive App](https://clemson-viz-entry-ah2k4qgwmdeww8d7ao6z75.streamlit.app/)
+[Click here to launch the interactive App](https://clemson-dataviz-entry-mlalgoclusters.streamlit.app/)
 
 ### Overview
 This project challenges the "accuracy is everything" mindset in construction AI. By synthesizing data from 30+ empirical studies, and mapping algorithms on two axes: Complexity Fit vs. Data Fit - the visual demonstrates that **Ensemble methods** (like Random Forest) are the industry "Gold Standard" because they balance complexity with the robustness needed for imperfect construction data. It synthesizes data from 30+ studies to 
