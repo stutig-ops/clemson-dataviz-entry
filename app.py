@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
 # --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
@@ -28,7 +29,7 @@ def load_and_jitter_data():
     # Load the raw data (113 rows)
     df = pd.read_csv('algo_table_with_scores.csv')
     
-    # Map raw category names to clean names
+    # Map raw category names to clean SHORT names (Consistent with pastel_map below)
     name_map = {
         'Artificial Neural Networks (ANN)': 'ANN',
         'Bayesian networks': 'Bayesian Networks',
@@ -47,7 +48,6 @@ def load_and_jitter_data():
     df['category_clean'] = df['category'].map(name_map).fillna(df['category'])
 
     # ADD JITTER (Deterministic)
-    # This separates overlapping points so we can see the "Clusters"
     np.random.seed(42) # Reproducible seed
     jitter_strength = 0.35
     df['X_Jittered'] = df['X_complexity'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
@@ -115,18 +115,19 @@ elif task_context == "Cost Prediction":
     size_title = "Cost Score"
 
 # Professional Muted Pastel Palette
+# FIXED: Keys now match the 'category_clean' values (Short Names)
 pastel_map = {
-    'Artifical Neural Network (ANN)': '#D68C9F', # Deep Dusty Rose (Darker/Redder)
+    'ANN': '#D68C9F',                    # Deep Dusty Rose
     'Bayesian Networks': '#A6C6CC',      # Powder Teal
     'Boosting/Gradient': '#A3C1A3',      # Sage Green
     'Decision Tree': '#BFB5C2',          # Lilac Grey
     'Ensemble': '#E6C8C8',               # Dusty Rose
     'Extremely Randomized Trees': '#D1D1AA', # Khaki Pastel
-    'k-Nearest Neighbor (KNN)': '#9FA8DA',                    # Muted Periwinkle (Now distinctly BLUE, not grey)
+    'KNN': '#9FA8DA',                    # Muted Periwinkle
     'Naïve-Bayesian': '#C4AFAF',         # Mauve Taupe
     'Random Forest': '#DDB8AC',          # Peach Grey
     'Regression': '#ABC6D4',             # Slate Blue Pastel
-    'Support Vector Machine (SVM)': '#78909C'                     # Blue Grey (Darker and distinct from the background)
+    'SVM': '#78909C'                     # Blue Grey
 }
 
 # --- GENERATE CLUSTER PLOT ---
@@ -172,21 +173,20 @@ center_val = 5.5
 fig.add_vline(x=center_val, line_width=2, line_dash="dash", line_color="grey")
 fig.add_hline(y=center_val, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels (Styled like your Matplotlib code)
-# Quadrant 1 (Top Left) -> Simple & Basic? Wait, X is Complexity.
-# Low X (Simple), High Y (Sophisticated) -> Top Left
+# 3. Add Quadrant Labels
+# Quadrant 1 (Top Left) -> Simple & Sophisticated
 fig.add_annotation(x=2.5, y=8.5, text="<b>Simple &<br>Sophisticated</b>", showarrow=False, 
                    bgcolor="#e8f4f8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# Quadrant 2 (Top Right) -> High X (Complex), High Y (Sophisticated)
+# Quadrant 2 (Top Right) -> Advanced & Sophisticated
 fig.add_annotation(x=7.5, y=8.5, text="<b>Advanced &<br>Sophisticated</b>", showarrow=False, 
                    bgcolor="#e8f8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# Quadrant 3 (Bottom Left) -> Low X (Simple), Low Y (Basic)
+# Quadrant 3 (Bottom Left) -> Simple & Basic
 fig.add_annotation(x=2.5, y=1.5, text="<b>Simple &<br>Basic</b>", showarrow=False, 
                    bgcolor="#f8e8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# Quadrant 4 (Bottom Right) -> High X (Complex), Low Y (Basic)
+# Quadrant 4 (Bottom Right) -> Complex but Established
 fig.add_annotation(x=7.5, y=1.5, text="<b>Complex but<br>Established</b>", showarrow=False, 
                    bgcolor="#ffffe0", bordercolor="grey", borderwidth=1, opacity=0.8)
 
@@ -203,7 +203,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 # --- 6. METHODOLOGY FOOTER ---
 st.divider()
-st.caption("""
+st.caption(f"""
 **Methodology:** Data derived from a meta-analysis of 30 empirical studies. Scores (C, D, I, M) were calculated based on 11 algorithmic indicators.
 A systematic literature review following PRISMA guidelines analyzed 30 articles encompassing 113 algorithms used for construction applications. 
 The development of the framework was a result of a four-stage process:
@@ -217,20 +217,6 @@ The development of the framework was a result of a four-stage process:
 * **Y-Axis:** Sophistication (1-10) - Ability to handle real-world data issues (missing values, imbalance).
 * **Bubble Size:** {size_title}
 * **Clusters:** 113 distinct algorithmic implementations from the literature, jittered for visibility.
-""")
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
-
 """)
-
-
-
-
-
-
-
-
-
-
-
-
