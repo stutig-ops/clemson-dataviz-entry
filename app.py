@@ -184,7 +184,7 @@ fig = px.scatter(
     labels={
         "X_Jittered": "Complexity Fit (C)",
         "Y_Jittered": "Data Fit (D)",
-        "category_clean": "Algorithm Family"
+        "category_clean": "ML Algorithm" # Clean label for legend
     }
 )
 
@@ -207,7 +207,7 @@ else:
 fig.add_vline(x=x_median, line_width=2, line_dash="dash", line_color="grey")
 fig.add_hline(y=y_median, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels (Plain text, Corner Positioning)
+# 3. Add Quadrant Labels (Clean, Corner Positioning)
 label_pad = 0.02
 
 # Q2: Simple & Robust (Top-Left)
@@ -246,7 +246,7 @@ fig.add_annotation(
     font=dict(size=14, color="black")
 )
 
-# 4. Final Layout Config (BIG LEGEND ON RIGHT)
+# 4. Final Layout Config (UPDATED LEGEND)
 fig.update_layout(
     height=750,
     margin=dict(l=40, r=40, t=60, b=40),
@@ -255,13 +255,13 @@ fig.update_layout(
     
     # --- LEGEND CONFIGURATION ---
     legend=dict(
-        title=dict(text="<b>Algorithm Family</b>", font=dict(size=16)),
+        title=dict(text="<b>ML Algorithm</b><br>", font=dict(size=18)), # Added <br> for spacing
         orientation="v",       
         yanchor="top", y=1,    
         xanchor="left", x=1.02,
-        font=dict(size=14),    
-        itemsizing="constant", 
-        tracegroupgap=5        
+        font=dict(size=15),    # Increased font slightly
+        itemsizing="constant", # Ensures markers are visible
+        tracegroupgap=10       
     )
 )
 
