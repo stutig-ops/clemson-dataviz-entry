@@ -31,7 +31,7 @@ def load_and_process_data():
     
     # 1. Clean Category Names
     name_map = {
-        'Artificial Neural Networks (ANN)': 'ANN',
+        'Artificial Neural Networks (ANN)': 'Artificial Neural Networks (ANN)',
         'Bayesian networks': 'Bayesian Networks',
         'Boosting/Gradient ': 'Boosting/Gradient',
         'Boosting/Gradient': 'Boosting/Gradient',
@@ -42,8 +42,8 @@ def load_and_process_data():
         'Naïve-Bayesian Classifier ': 'Naïve-Bayesian',
         'Random Forest': 'Random Forest',
         'Regression': 'Regression',
-        'Support Vector Machine (SVM)': 'SVM',
-        'k-Nearest Neighbour (KNN)': 'KNN'
+        'Support Vector Machine (SVM)': 'Support Vector Machine (SVM)',
+        'k-Nearest Neighbour (KNN)': 'k-Nearest Neighbour (KNN)'
     }
     df['category_clean'] = df['category'].map(name_map).fillna(df['category'])
 
@@ -152,10 +152,17 @@ elif task_context == "Cost Prediction":
 
 # Professional Muted Pastel Palette
 pastel_map = {
-    'ANN': '#D68C9F', 'Bayesian Networks': '#A6C6CC', 'Boosting/Gradient': '#A3C1A3',
-    'Decision Tree': '#BFB5C2', 'Ensemble': '#E6C8C8', 'Extremely Randomized Trees': '#D1D1AA',
-    'KNN': '#9FA8DA', 'Naïve-Bayesian': '#C4AFAF', 'Random Forest': '#DDB8AC',
-    'Regression': '#ABC6D4', 'SVM': '#78909C'
+    'Artificial Neural Networks (ANN)': '#D68C9F',  # Deep Dusty Rose
+    'Bayesian Networks': '#A6C6CC',                 # Powder Teal
+    'Boosting/Gradient': '#A3C1A3',                 # Sage Green
+    'Decision Tree': '#BFB5C2',                     # Lilac Grey
+    'Ensemble': '#E6C8C8',                          # Dusty Rose
+    'Extremely Randomized Trees': '#D1D1AA',        # Khaki Pastel
+    'k-Nearest Neighbour (KNN)': '#9FA8DA',         # Muted Periwinkle
+    'Naïve-Bayesian': '#C4AFAF',                    # Mauve Taupe
+    'Random Forest': '#DDB8AC',                     # Peach Grey
+    'Regression': '#ABC6D4',                        # Slate Blue Pastel
+    'Support Vector Machine (SVM)': '#78909C'       # Blue Grey
 }
 
 # --- GENERATE CLUSTER PLOT ---
@@ -200,14 +207,13 @@ else:
 fig.add_vline(x=x_median, line_width=2, line_dash="dash", line_color="grey")
 fig.add_hline(y=y_median, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels (Clean, Corner Positioning)
-# Define padding from the edges of the plot area (0.0 to 1.0)
+# 3. Add Quadrant Labels (Plain text, Corner Positioning)
 label_pad = 0.02
 
 # Q2: Simple & Robust (Top-Left)
 fig.add_annotation(
     x=0 + label_pad, y=1 - label_pad,
-    text="<b>Simple &<br>Robust</b>",
+    text="Quadrant 2:<br>Simple & Robust",
     showarrow=False,
     xanchor="left", yanchor="top",
     font=dict(size=14, color="black")
@@ -216,7 +222,7 @@ fig.add_annotation(
 # Q1: Advanced & Sophisticated (Top-Right)
 fig.add_annotation(
     x=1 - label_pad, y=1 - label_pad,
-    text="<b>Advanced &<br>Sophisticated</b>",
+    text="Quadrant 1:<br>Advanced & Sophisticated",
     showarrow=False,
     xanchor="right", yanchor="top",
     font=dict(size=14, color="black")
@@ -225,7 +231,7 @@ fig.add_annotation(
 # Q3: Limited Applicability (Bottom-Left)
 fig.add_annotation(
     x=0 + label_pad, y=0 + label_pad,
-    text="<b>Limited<br>Applicability</b>",
+    text="Quadrant 3:<br>Limited Applicability",
     showarrow=False,
     xanchor="left", yanchor="bottom",
     font=dict(size=14, color="black")
@@ -234,7 +240,7 @@ fig.add_annotation(
 # Q4: Complex & Fragile (Bottom-Right)
 fig.add_annotation(
     x=1 - label_pad, y=0 + label_pad,
-    text="<b>Complex &<br>Fragile</b>",
+    text="Quadrant 4:<br>Complex & Fragile",
     showarrow=False,
     xanchor="right", yanchor="bottom",
     font=dict(size=14, color="black")
