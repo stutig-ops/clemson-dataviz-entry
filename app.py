@@ -79,7 +79,7 @@ def load_and_process_data():
 df, x_median, y_median = load_and_process_data()
 
 # --- 4. SIDEBAR CONTROLS ---
-st.sidebar.header("⚙️ Configuration")
+st.sidebar.header("Configuration")
 
 # A. Task Context Selector
 task_context = st.sidebar.radio(
@@ -91,7 +91,7 @@ task_context = st.sidebar.radio(
 st.sidebar.divider()
 
 # B. Method Highlighter (Optional Filter)
-st.sidebar.subheader("🔍 Filter by Family")
+st.sidebar.subheader("Filter by Family")
 algo_options = ["All Families"] + sorted(df['category_clean'].unique())
 selected_family = st.sidebar.selectbox("Highlight Family:", algo_options, index=0)
 
@@ -108,13 +108,11 @@ if selected_family != "All Families":
     avg_sched = subset['schedule_suitability'].mean()
     avg_cost = subset['cost_suitability'].mean()
 
-    st.sidebar.subheader(f"📊 {selected_family}")
+    st.sidebar.subheader(f"{selected_family}")
     st.sidebar.caption(f"**{count}** Implementations (M={maturity:.2f})")
     
-    # --- UPDATED SIDEBAR LAYOUT ---
-    
-    # 1. Core Metrics (C & D) - Always visible now
-    st.sidebar.markdown("##### 📐 Core Metrics")
+    # 1. Core Metrics (C & D)
+    st.sidebar.markdown("##### Core Metrics")
     col_cd1, col_cd2 = st.sidebar.columns(2)
     with col_cd1:
         st.metric("Complexity (C)", f"{fam_c:.2f}", help="Avg. Complexity Fit")
@@ -124,7 +122,7 @@ if selected_family != "All Families":
     st.sidebar.divider()
     
     # 2. Task Suitability Scores
-    st.sidebar.markdown("##### ✅ Task Suitability")
+    st.sidebar.markdown("##### Task Suitability")
     col1, col2 = st.sidebar.columns(2)
     with col1:
         st.metric("Avg Safety", f"{avg_safety:.2f}")
@@ -177,8 +175,8 @@ fig = px.scatter(
     size_max=40,
     template="plotly_white",
     labels={
-        "X_Jittered": "Avg. Complexity Fit (C)",
-        "Y_Jittered": "Avg. Data Fit (D)",
+        "X_Jittered": "Complexity Fit (C)",
+        "Y_Jittered": "Data Fit (D)",
         "category_clean": "Algorithm Family"
     }
 )
@@ -202,22 +200,45 @@ else:
 fig.add_vline(x=x_median, line_width=2, line_dash="dash", line_color="grey")
 fig.add_hline(y=y_median, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels
-x_max, x_min = df['Avg_Complexity_C'].max(), df['Avg_Complexity_C'].min()
-y_max, y_min = df['Avg_DataFit_D'].max(), df['Avg_DataFit_D'].min()
+# 3. Add Quadrant Labels (Clean, Corner Positioning)
+# Define padding from the edges of the plot area (0.0 to 1.0)
+label_pad = 0.02
 
-fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_median + (y_max-y_median)/2, 
-                   text="<b>Simple &<br>Robust</b>", showarrow=False, 
-                   bgcolor="#e8f4f8", bordercolor="grey", borderwidth=1, opacity=0.8)
-fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_median + (y_max-y_median)/2, 
-                   text="<b>Advanced &<br>Sophisticated</b>", showarrow=False, 
-                   bgcolor="#e8f8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
-fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_min + (y_median-y_min)/2, 
-                   text="<b>Limited<br>Applicability</b>", showarrow=False, 
-                   bgcolor="#f8e8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
-fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_min + (y_median-y_min)/2, 
-                   text="<b>Complex &<br>Fragile</b>", showarrow=False, 
-                   bgcolor="#ffffe0", bordercolor="grey", borderwidth=1, opacity=0.8)
+# Q2: Simple & Robust (Top-Left)
+fig.add_annotation(
+    x=0 + label_pad, y=1 - label_pad,
+    text="<b>Simple &<br>Robust</b>",
+    showarrow=False,
+    xanchor="left", yanchor="top",
+    font=dict(size=14, color="black")
+)
+
+# Q1: Advanced & Sophisticated (Top-Right)
+fig.add_annotation(
+    x=1 - label_pad, y=1 - label_pad,
+    text="<b>Advanced &<br>Sophisticated</b>",
+    showarrow=False,
+    xanchor="right", yanchor="top",
+    font=dict(size=14, color="black")
+)
+
+# Q3: Limited Applicability (Bottom-Left)
+fig.add_annotation(
+    x=0 + label_pad, y=0 + label_pad,
+    text="<b>Limited<br>Applicability</b>",
+    showarrow=False,
+    xanchor="left", yanchor="bottom",
+    font=dict(size=14, color="black")
+)
+
+# Q4: Complex & Fragile (Bottom-Right)
+fig.add_annotation(
+    x=1 - label_pad, y=0 + label_pad,
+    text="<b>Complex &<br>Fragile</b>",
+    showarrow=False,
+    xanchor="right", yanchor="bottom",
+    font=dict(size=14, color="black")
+)
 
 # 4. Final Layout Config (BIG LEGEND ON RIGHT)
 fig.update_layout(
@@ -252,8 +273,8 @@ The development of the framework was a result of a four-stage process:
 (4) quadrant-based visualization of the algorithms between model complexity, dataset characteristics and frequency of adoption
 
 **Visual Encoding:**
-* **X-Axis:** Average Complexity Fit (C) - Calculated empirically per family. Median Boundary: {x_median:.2f}
-* **Y-Axis:** Average Data Fit (D) - Calculated empirically per family. Median Boundary: {y_median:.2f}
+* **X-Axis:** Complexity Fit (C) - Calculated empirically per family. Median Boundary: {x_median:.2f}
+* **Y-Axis:** Data Fit (D) - Calculated empirically per family. Median Boundary: {y_median:.2f}
 * **Bubble Size:** {size_title}
 * **Clusters:** 113 distinct algorithmic implementations from the literature, jittered for visibility around their family average.
 
