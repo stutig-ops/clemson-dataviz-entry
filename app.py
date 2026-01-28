@@ -270,19 +270,23 @@ st.plotly_chart(fig, use_container_width=True)
 # --- 6. METHODOLOGY FOOTER ---
 st.divider()
 st.caption(f"""
-**Methodology:** Data derived from a meta-analysis of 30 empirical studies. Scores (C, D, I, M) were calculated based on 11 algorithmic indicators.
-A systematic literature review following PRISMA guidelines analyzed 30 articles encompassing 113 algorithms used for construction applications. 
-The development of the framework was a result of a four-stage process:
-(1) synthesis and extraction of algorithmic characteristics from the findings of the SLR
-(2) systematic coding of algorithms implementations based on the theoretical and empirical knowledge of performance patterns of the algorithms
-(3) development of a multidimensional scoring framework
-(4) quadrant-based visualization of the algorithms between model complexity, dataset characteristics and frequency of adoption
+**Methodology:**
+Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) of 30 studies (113 algorithm implementations). The framework quantifies algorithm suitability through four core dimensions derived from 16 coded indicators:
+
+1.  **Complexity Fit (C):** Ability to model non-linear/complex relationships. Calculated as: $0.4 \\times NonLinearity + 0.4 \\times ComplexPatterns + 0.2 \\times HighDimensional$.
+2.  **Data Fit (D):** Robustness to data quality issues. Calculated as: $0.3 \\times MissingData + 0.3 \\times Imbalance + 0.2 \\times SmallN + 0.2 \\times LargeN$.
+3.  **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
+4.  **Maturity (M):** Empirical adoption frequency normalized to [0, 1].
+
+**Validation:** Pearson correlation ($|r|=0.353$) confirmed C and D are orthogonal dimensions, justifying the quadrant axes defined by their median values ({x_median:.2f}, {y_median:.2f}).
 
 **Visual Encoding:**
-* **X-Axis:** Complexity Fit (C) - Calculated empirically per family. Median Boundary: {x_median:.2f}
-* **Y-Axis:** Data Fit (D) - Calculated empirically per family. Median Boundary: {y_median:.2f}
+* **X-Axis:** Average Complexity Fit (C). Median Boundary: {x_median:.2f}
+* **Y-Axis:** Average Data Fit (D). Median Boundary: {y_median:.2f}
 * **Bubble Size:** {size_title}
-* **Clusters:** 113 distinct algorithmic implementations from the literature, jittered for visibility around their family average.
+* **Clusters:** 113 distinct algorithmic implementations, jittered for visibility.
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
+
+
