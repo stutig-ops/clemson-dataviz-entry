@@ -1,0 +1,114 @@
+study_id,algorithm_name,objective,dependent_variable,category,frequency,handles_non_linear,good_for_imbalanced,good_for_high_dimensional,requires_regularization_for_dimensionality,uncertainty_modeling,interpretability_level,supports_small_N,supports_large_N,handles_missing_values_natively,good_for_complex_non_linear,good_for_temporal_sequences,complexity_fit_C,data_fit_D,interpretability_I,Maturity_M,X_complexity,Y_sophistication,safety_suitability,schedule_suitability,cost_suitability
+S1,Machine Learning Regression Techniques (MLRT),Prediction,Cost,Regression,1,1,0,0,0,0,high,0,1,0,1,0,0.8,0.2,1.0,1.0,2,3,0.45,0.55,0.8
+S1,Machine Learning Regression Techniques (MLRT),Prediction,Schedule,Regression,1,1,0,0,0,0,high,0,1,0,1,0,0.8,0.2,1.0,1.0,2,3,0.45,0.55,0.8
+S2,Multiple Regression,Prediction,"Cost, Schedule",Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S2,Artificial Neural Networks (ANN),Prediction,"Cost, Schedule",Artificial Neural Networks (ANN),1,1,0,0,0,0,low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S3,Association Rule Mining + Bayesian Network ,Prediction,Risk of Defects,Ensemble,1,0,1,1,0,1,high,1,0,0,0,0,0.2,0.5,1.0,1.0,7,8,0.6,0.3,0.6
+S4,Evolutionary Support Vector Machine Inference Model (ESIM),Prediction,Project Success,Ensemble,1,1,0,1,0,0,low,1,0,0,1,0,1.0,0.2,0.0,1.0,7,8,0.2,0.35,0.44999999999999996
+S5,ANN Combiner: ANN(MLP) + KNN(Ibk) + SVM(SMOReg),Prediction,Schedule,Ensemble,1,1,0,1,0,0,low,1,0,0,1,0,1.0,0.2,0.0,1.0,7,8,0.2,0.35,0.44999999999999996
+S5,KNN Ensemble Method: MLRA (Linear Regression) + SVM (SMROeg),Prediction,Cost,Ensemble,1,1,0,1,0,0,medium,1,0,0,1,0,1.0,0.2,0.5,1.0,7,8,0.325,0.35,0.575
+S5,Multi-Layer Perceptron neural network (MLP),Classification,Risk of Delay,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,1,0,0,1,0,0.8,0.2,0.0,1.0,8,6,0.2,0.35,0.3
+S6,ANN with Levenberg-Marquardt (LM) Algorithm,Prediction,Energy,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S6,ANN with Bayesian Regularization,Prediction,Energy,Artificial Neural Networks (ANN),1,1,0,1,0,1,low,0,0,0,1,0,1.0,0.0,0.0,1.0,8,6,0.2,0.35,0.65
+S7,Random Forest Regressor (RFR),Prediction,Construction accident cost,Random Forest,1,1,1,1,0,0,medium,0,0,1,1,0,1.0,0.6,0.5,1.0,6,7,0.875,0.65,0.575
+S7,Extreme Gradient Boosting (XGBoost) Regressor,Prediction,Construction accident cost,Boosting/Gradient ,1,1,1,1,0,0,medium,0,1,1,1,0,1.0,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S7,Natural Gradient Boosting (NGBoost) Regressor,Prediction,Construction accident cost,Boosting/Gradient ,1,1,1,1,0,1,medium,1,0,1,1,0,1.0,0.8,0.5,1.0,5,5,0.875,0.65,0.775
+S8,Gradient Boosting Model (GBM),Prediction,Bearing Strength,Boosting/Gradient ,1,1,1,1,0,0,medium,0,1,1,1,0,1.0,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S9,Linear Regression,Prediction,Construction cost index,Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S9,Decision Tree,Prediction,Construction cost index,Decision Tree,1,1,0,0,0,0,high,1,0,1,0,0,0.4,0.5,1.0,1.0,3,4,0.45,0.1,0.7000000000000001
+S9,Random Forest ,Prediction,Construction cost index,Random Forest,1,1,1,1,0,0,medium,0,1,1,1,0,1.0,0.8,0.5,1.0,6,7,0.875,0.85,0.6749999999999999
+S9,Artificial Neural Networks (ANN),Prediction,Construction cost index,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S10,Multi-Layer Perceptron neural network (MLP),Classification,Risk of Delay,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,1,0,0,1,0,0.8,0.2,0.0,1.0,8,6,0.2,0.35,0.3
+S10,K-Nearest Neighbors (KNN - IBk),Classification,Risk of Delay,k-Nearest Neighbour (KNN),1,1,0,0,0,0,medium,1,0,0,0,0,0.4,0.2,0.5,1.0,5,5,0.125,0.1,0.425
+S10,Support Vector Machines (SVM - SMO),Classification,Risk of Delay,Support Vector Machine (SVM),1,1,0,1,0,0,medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.425
+S10,"Voting - Combine ANN, KNN and SVM by majority voting",Classification,Risk of Delay,Ensemble,1,1,0,0,0,0,low,1,0,0,1,0,0.8,0.2,0.0,1.0,7,8,0.2,0.35,0.3
+S10,Stacking - Combine ANN and SVM with ANN as combining classifier,Classification,Risk of Delay,Ensemble,1,1,0,0,0,0,low,1,0,0,1,0,0.8,0.2,0.0,1.0,7,8,0.2,0.35,0.3
+S10,Stacking - Combine ANN and SVM with SVM as combining classifier,Classification,Risk of Delay,Ensemble,1,1,0,0,0,0,low,1,0,0,1,0,0.8,0.2,0.0,1.0,7,8,0.2,0.35,0.3
+S11,Support Vector Machine (SVM) - Soft-margin,Classification,Constructability,Support Vector Machine (SVM),1,1,0,1,0,0,medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.425
+S12,Decision Tree,Classification,Severity of Accidents,Decision Tree,1,1,0,0,0,0,high,1,0,1,0,0,0.4,0.5,1.0,1.0,3,4,0.45,0.1,0.55
+S12,Random Forest,Classification,Severity of Accidents,Random Forest,1,1,1,1,0,0,medium,0,0,1,1,0,1.0,0.6,0.5,1.0,6,7,0.875,0.65,0.425
+S12,Logistic Regression,Classification,Severity of Accidents,Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.25
+S12,K-nearest neighbour (KNN),Classification,Severity of Accidents,k-Nearest Neighbour (KNN),1,1,0,0,0,0,medium,0,0,0,0,0,0.4,0.0,0.5,1.0,5,5,0.125,0.1,0.425
+S12,Support Vector Machine (SVM),Classification,Severity of Accidents,Support Vector Machine (SVM),1,1,0,1,0,0,medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.425
+S13,Decision Tree,Classification,Carried Weight by Construction Worker,Decision Tree,1,1,0,0,0,0,high,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.55
+S13,Random Forest ,Classification,Carried Weight by Construction Worker,Random Forest,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.85,0.525
+S13,Gradient Boosting Model (GBM),Classification,Carried Weight by Construction Worker,Boosting/Gradient ,1,1,1,0,0,0,medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.425
+S13,Light Gradient Boosting Model (GBM),Classification,Carried Weight by Construction Worker,Boosting/Gradient ,1,1,1,1,0,0,medium,0,0,1,1,0,1.0,0.6,0.5,1.0,5,5,0.875,0.65,0.425
+S14,Decision Tree,Classification,Extent of Time Overrun,Decision Tree,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,3,4,0.45,0.35,0.55
+S14,Naïve-Bayesian Classifier,Classification,Extent of Time Overrun,Naïve-Bayesian Classifier ,1,0,0,0,0,1,high,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
+S15,Bayesian networks,Classification,Factor selection for delay,Bayesian networks,1,0,0,0,0,1,high,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
+S15,Decision Tree (DT - Inductive learning algorithm called the wrapper approach (ML) - C4.5),Classification,Factor selection for delay,Decision Tree,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,3,4,0.45,0.35,0.55
+S16,Binary Particle Swarm Optimization(BPSO)+AdaBoost+SVM,Classification,Degree of damage risk,Ensemble,1,1,1,1,0,0,medium,1,0,0,1,0,1.0,0.5,0.5,1.0,7,8,0.675,0.65,0.425
+S16,AdaBoost +SVM,Classification,Degree of damage risk,Ensemble,1,1,1,1,0,0,medium,1,0,0,1,0,1.0,0.5,0.5,1.0,7,8,0.675,0.65,0.425
+S16,K-nearest neighbour (KNN),Classification,Degree of damage risk,k-Nearest Neighbour (KNN),1,1,0,0,0,0,medium,0,0,0,0,0,0.4,0.0,0.5,1.0,5,5,0.125,0.1,0.425
+S16,AdaBoost +KNN,Classification,Degree of damage risk,Ensemble,1,1,1,0,0,0,medium,0,0,0,0,0,0.4,0.3,0.5,1.0,7,8,0.475,0.4,0.425
+S17,Random Forest ,Classification,Construction injury type,Random Forest,1,1,1,1,0,1,medium,0,1,1,1,0,1.0,0.8,0.5,1.0,6,7,0.875,0.85,0.725
+S17,Stochastic Gradient Tree Boosting (SGTB),Classification,Construction injury type,Boosting/Gradient ,1,1,1,1,0,1,medium,0,1,1,1,0,1.0,0.8,0.5,1.0,5,5,0.875,0.85,0.725
+S18,Linear Regression,Prediction,Construction time,Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S18,Random Forest,Prediction,Construction time,Random Forest,1,1,1,0,0,0,medium,1,0,0,1,0,0.8,0.5,0.5,1.0,6,7,0.675,0.65,0.575
+S18,Decision Tree,Prediction,Construction time,Decision Tree,1,1,0,0,0,0,high,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.7000000000000001
+S18,K-nearest neighbour (KNN),Prediction,Construction time,k-Nearest Neighbour (KNN),1,1,0,0,0,0,medium,1,0,0,0,0,0.4,0.2,0.5,1.0,5,5,0.125,0.1,0.575
+S18,XGBoost,Prediction,Construction time,Boosting/Gradient ,1,1,1,0,0,0,medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.575
+S18,Polynomial Regression,Prediction,Construction time,Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S19,Linear Regression,Classification,Sleep Deprivation,Regression,1,0,0,0,0,0,high,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.25
+S19,Decision Tree,Classification,Sleep Deprivation,Decision Tree,1,1,0,0,0,0,high,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.55
+S19,Support Vector Machine (SVM),Classification,Sleep Deprivation,Support Vector Machine (SVM),1,1,0,1,0,0,medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.425
+S19,Random Forest,Classification,Sleep Deprivation,Random Forest,1,1,1,1,0,0,medium,1,0,1,1,0,1.0,0.8,0.5,1.0,6,7,0.875,0.65,0.425
+S20,Bayesian Optimization Extreme Gradient Boosting (BO-XGBoost),Prediction,Carbon Emissions,Boosting/Gradient ,1,1,1,0,0,0,medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S20,Random Forest,Prediction,Carbon Emissions,Random Forest,1,1,1,0,0,0,medium,1,0,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.65,0.575
+S20,XGBoost,Prediction,Carbon Emissions,Boosting/Gradient ,1,1,1,0,0,0,medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S20,XGBoost optimized by Grid Search (GS-XGBoost),Prediction,Carbon Emissions,Boosting/Gradient ,1,1,1,0,0,0,medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,Elastic-Net Regression,Prediction,Residential Construction Industry Demand,Regression,1,0,0,1,1,0,high,1,0,0,0,0,0.2,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S21,Artificial Neural Networks (ANN),Prediction,Residential Construction Industry Demand,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S21,Eureqa,Prediction,Residential Construction Industry Demand,Regression,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,2,3,0.45,0.35,0.7000000000000001
+S21,Extremely Randomized Trees,Prediction,Residential Construction Industry Demand,Extremely Randomized Trees,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,Support Vector Machine (SVM),Prediction,Residential Construction Industry Demand,Support Vector Machine (SVM),1,1,0,0,0,0,medium,1,0,0,1,0,0.8,0.2,0.5,1.0,5,5,0.325,0.35,0.575
+S21,Random Forest,Prediction,Residential Construction Industry Demand,Random Forest,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.85,0.6749999999999999
+S21,Decision Tree,Prediction,Residential Construction Industry Demand,Decision Tree,1,1,0,0,0,0,high,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.7000000000000001
+S21,Gradient Boosting Model (GBM),Prediction,Residential Construction Industry Demand,Boosting/Gradient ,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,Light Gradient Boosting Model (LightGBM),Prediction,Residential Construction Industry Demand,Boosting/Gradient ,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,XGBoost,Prediction,Residential Construction Industry Demand,Boosting/Gradient ,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,Rule Fit,Prediction,Residential Construction Industry Demand,Ensemble,1,1,0,0,0,0,high,0,0,0,1,0,0.8,0.0,1.0,1.0,7,8,0.45,0.35,0.7000000000000001
+S22,XGBoost ,Prediction,Project Duration Cost Energy,Boosting/Gradient ,1,1,1,0,0,0,Medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S22,Artificial Neural Networks (ANN),Prediction,Project Duration Cost Energy,Artificial Neural Networks (ANN),1,1,0,0,0,0,Low,1,0,0,1,0,0.8,0.2,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S22,Linear Regression,Prediction,Project Duration Cost Energy,Regression,1,0,0,0,0,0,High,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S22,Polynomial Regression,Prediction,Project Duration Cost Energy,Regression,1,0,0,0,0,0,High,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S22,Support Vector Machine (SVM),Prediction,Project Duration Cost Energy,Support Vector Machine (SVM),1,1,0,1,0,0,Medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.575
+S22,Decision Tree,Prediction,Project Duration Cost Energy,Decision Tree,1,1,0,0,0,0,High,1,0,1,1,0,0.8,0.5,1.0,1.0,3,4,0.65,0.35,0.7000000000000001
+S22,Random Forest ,Prediction,Project Duration Cost Energy,Random Forest,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.65,0.575
+S22,Bagging Regression,Prediction,Project Duration Cost Energy,Ensemble,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,7,8,0.875,0.65,0.575
+S22,Extremely Randomized Trees,Prediction,Project Duration Cost Energy,Ensemble,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,7,8,0.875,0.65,0.575
+S22,AdaBoost,Prediction,Project Duration Cost Energy,Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.575
+S22,Stochastic Gradient Tree Boosting (SGTB),Prediction,Project Duration Cost Energy,Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.575
+S23,CatBoost,Classification,Levels of Time Overrun (TO),Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.425
+S23,XGBoost,Classification,Levels of Time Overrun (TO),Boosting/Gradient ,1,1,1,0,0,0,Medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.525
+S23,Light Gradient Boosting Model (LightGBM),Classification,Levels of Time Overrun (TO),Boosting/Gradient ,1,1,1,0,0,0,Medium,1,1,1,1,0,0.8,1.0,0.5,1.0,5,5,0.875,0.85,0.525
+S24,Natural Gradient Boosting (NGBoost),Prediction,Life cycle carbon emissions,Boosting/Gradient ,1,1,1,0,0,1,Medium,1,0,0,1,0,0.8,0.5,0.5,1.0,5,5,0.675,0.65,0.775
+S25,Long short-term memory (LSTM),Classification,Walking activities posture estimation,Artificial Neural Networks (ANN),1,1,0,0,0,0,Low,0,1,0,1,1,0.8,0.2,0.0,1.0,8,6,0.2,0.7,0.4
+S26,K-nearest neighbour (KNN),Prediction,Fatigue Level,k-Nearest Neighbour (KNN),1,1,0,0,0,0,Medium,1,0,0,0,0,0.4,0.2,0.5,1.0,5,5,0.125,0.1,0.575
+S26,Support Vector Machine (SVM),Prediction,Fatigue Level,Support Vector Machine (SVM),1,1,0,1,0,0,Medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.575
+S26,Multi-Layer Perceptron neural network (MLP),Prediction,Fatigue Level,Artificial Neural Networks (ANN),1,1,0,0,0,0,Low,1,0,0,1,0,0.8,0.2,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S26,Decision Tree,Prediction,Fatigue Level,Decision Tree,1,1,0,0,0,0,High,1,0,1,0,0,0.4,0.5,1.0,1.0,3,4,0.45,0.1,0.7000000000000001
+S26,Random Forest,Prediction,Fatigue Level,Random Forest,1,1,0,1,0,0,Medium,1,1,1,1,0,1.0,0.7,0.5,1.0,6,7,0.525,0.55,0.6749999999999999
+S26,XGBoost,Prediction,Fatigue Level,Boosting/Gradient ,1,1,0,1,0,0,Medium,1,1,1,1,0,1.0,0.7,0.5,1.0,5,5,0.525,0.55,0.6749999999999999
+S26,Light Gradient Boosting Model (LightGBM),Prediction,Fatigue Level,Boosting/Gradient ,1,1,0,0,0,0,Medium,1,1,1,1,0,0.8,0.7,0.5,1.0,5,5,0.525,0.55,0.6749999999999999
+S26,CatBoost,Prediction,Fatigue Level,Boosting/Gradient ,1,1,0,0,0,0,Medium,1,1,1,1,0,0.8,0.7,0.5,1.0,5,5,0.525,0.55,0.6749999999999999
+S26,Gradient Boosting Model (GBM),Prediction,Fatigue Level,Boosting/Gradient ,1,1,0,0,0,0,Medium,1,1,1,1,0,0.8,0.7,0.5,1.0,5,5,0.525,0.55,0.6749999999999999
+S27,Logistic Regression,Classification,Time overrun Level,Regression,1,0,0,0,0,0,High,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.25
+S27,K-Nearest Neighbors (KNN),Classification,Time overrun Level,k-Nearest Neighbour (KNN),1,1,0,0,0,0,Medium,1,0,0,0,0,0.4,0.2,0.5,1.0,5,5,0.125,0.1,0.425
+S27,Support Vector Machine (SVM),Classification,Time overrun Level,Support Vector Machine (SVM),1,1,0,0,0,0,Medium,1,0,0,1,0,0.8,0.2,0.5,1.0,5,5,0.325,0.35,0.425
+S27,Naïve-Bayesian Classifier,Classification,Time overrun Level,Naïve-Bayesian Classifier,1,0,0,0,0,1,High,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
+S27,Decision Tree,Classification,Time overrun Level,Decision Tree,1,1,0,0,0,0,High,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.55
+S27,Random Forest,Classification,Time overrun Level,Random Forest,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.65,0.425
+S28,Artificial neural network (ANN),Prediction,Time and Cost Overruns,Artificial Neural Networks (ANN),1,1,0,0,0,0,Low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
+S28,Multiple linear regression (MLR),Prediction,Time and Cost Overruns,Regression,1,0,0,0,0,0,High,1,0,0,0,0,0.0,0.2,1.0,1.0,2,3,0.25,0.0,0.4
+S28,Support Vector Machine (SVM),Prediction,Time and Cost Overruns,Support Vector Machine (SVM),1,1,0,1,0,0,Medium,1,0,0,1,0,1.0,0.2,0.5,1.0,5,5,0.325,0.35,0.575
+S28,Random Forest,Prediction,Time and Cost Overruns,Random Forest,1,1,0,0,0,0,Medium,0,0,1,1,0,0.8,0.3,0.5,1.0,6,7,0.525,0.35,0.575
+S29,Decision Tree,Classification,Delays affected by Change Orders,Decision Tree,1,1,0,0,0,0,High,0,0,0,1,0,0.8,0.0,1.0,1.0,3,4,0.45,0.35,0.55
+S29,Random Forest,Classification,Delays affected by Change Orders,Random Forest,1,1,1,0,0,0,Medium,0,0,0,1,0,0.8,0.3,0.5,1.0,6,7,0.675,0.65,0.425
+S29,AdaBoost,Classification,Delays affected by Change Orders,Boosting/Gradient ,1,1,1,0,0,0,Medium,0,0,0,1,0,0.8,0.3,0.5,1.0,5,5,0.675,0.65,0.425
+S29,Gradient Boosting Model (GBM),Classification,Delays affected by Change Orders,Boosting/Gradient ,1,1,1,0,0,0,Medium,0,0,0,1,0,0.8,0.3,0.5,1.0,5,5,0.675,0.65,0.425
+S30,Random Forest,Classification,Accident types injury,Random Forest,1,1,1,0,0,0,Medium,0,0,1,1,0,0.8,0.6,0.5,1.0,6,7,0.875,0.65,0.425
+S30,Light Gradient Boosting Model (LightGBM),Classification,Accident types injury,Boosting/Gradient ,1,1,1,0,0,0,Medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.425
+S30,XGBoost,Classification,Accident types injury,Boosting/Gradient ,1,1,1,0,0,0,Medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.425
+S30,CatBoost,Classification,Accident types injury,Boosting/Gradient ,1,1,1,0,0,0,Medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.425
