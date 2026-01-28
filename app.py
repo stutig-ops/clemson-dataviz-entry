@@ -25,11 +25,11 @@ Y-Axis: **Data Fit (D)** - measures robustness to real-world construction data c
 
 # --- 3. DATA LOADING & PRE-PROCESSING ---
 @st.cache_data
-def load_and_jitter_data():
+def load_and_process_data():
     # Load the raw data (113 rows)
     df = pd.read_csv('algo_table_with_scores.csv')
     
-    # Map raw category names to clean SHORT names (Consistent with pastel_map below)
+    # 1. Clean Category Names
     name_map = {
         'Artificial Neural Networks (ANN)': 'ANN',
         'Bayesian networks': 'Bayesian Networks',
@@ -47,15 +47,36 @@ def load_and_jitter_data():
     }
     df['category_clean'] = df['category'].map(name_map).fillna(df['category'])
 
-    # ADD JITTER (Deterministic)
-    np.random.seed(42) # Reproducible seed
-    jitter_strength = 0.35
-    df['X_Jittered'] = df['X_complexity'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
-    df['Y_Jittered'] = df['Y_sophistication'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
+    # 2. DYNAMIC COORDINATE CALCULATION
+    # Instead of hard-coded 1-10 values, we calculate the MEAN scores for each category
+    # directly from the empirical data columns: 'complexity_fit_C' and 'data_fit_D'
+    category_stats = df.groupby('category_clean')[['complexity_fit_C', 'data_fit_D']].mean().reset_index()
     
-    return df
+    # Rename for clarity
+    category_stats.rename(columns={
+        'complexity_fit_C': 'Avg_Complexity_C',
+        'data_fit_D': 'Avg_DataFit_D'
+    }, inplace=True)
+    
+    # Merge these averages back into the main dataframe
+    # Now every row (e.g., Study 1's SVM) gets the "SVM Family Average" as its coordinate base
+    df = df.merge(category_stats, on='category_clean', how='left')
 
-df = load_and_jitter_data()
+    # 3. ADD JITTER (Deterministic)
+    # We jitter around the FAMILY AVERAGE coordinate
+    np.random.seed(42) 
+    jitter_strength = 0.03 # Small jitter since scale is 0.0-1.0 now (not 1-10)
+    
+    df['X_Jittered'] = df['Avg_Complexity_C'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
+    df['Y_Jittered'] = df['Avg_DataFit_D'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
+    
+    # Calculate Medians for Quadrant Boundaries (Dynamic)
+    x_median = df['Avg_Complexity_C'].median()
+    y_median = df['Avg_DataFit_D'].median()
+    
+    return df, x_median, y_median
+
+df, x_median, y_median = load_and_process_data()
 
 # --- 4. SIDEBAR CONTROLS ---
 st.sidebar.header("⚙️ Configuration")
@@ -82,9 +103,14 @@ if selected_family != "All Families":
     avg_sched = subset['schedule_suitability'].mean()
     avg_cost = subset['cost_suitability'].mean()
     count = len(subset)
+    
+    # Get the coordinates for this family
+    fam_c = subset['Avg_Complexity_C'].iloc[0]
+    fam_d = subset['Avg_DataFit_D'].iloc[0]
 
     st.sidebar.subheader(f"📊 {selected_family}")
     st.sidebar.caption(f"**{count}** Implementations found.")
+    st.sidebar.markdown(f"**Coordinates:** C={fam_c:.2f}, D={fam_d:.2f}")
     
     col1, col2 = st.sidebar.columns(2)
     with col1:
@@ -115,7 +141,6 @@ elif task_context == "Cost Prediction":
     size_title = "Cost Score"
 
 # Professional Muted Pastel Palette
-# FIXED: Keys now match the 'category_clean' values (Short Names)
 pastel_map = {
     'ANN': '#D68C9F',                    # Deep Dusty Rose
     'Bayesian Networks': '#A6C6CC',      # Powder Teal
@@ -141,13 +166,14 @@ fig = px.scatter(
     hover_name="algorithm_name",
     hover_data={
         'X_Jittered': False, 'Y_Jittered': False, 'Size_Var': False,
-        'category_clean': True, 'Size_Label': True, 'objective': True
+        'category_clean': True, 'Size_Label': True, 'objective': True,
+        'Avg_Complexity_C': ':.2f', 'Avg_DataFit_D': ':.2f'
     },
     size_max=40, # Maximum bubble size
     template="plotly_white",
     labels={
-        "X_Jittered": "Algorithm Complexity (X)",
-        "Y_Jittered": "Algorithm Sophistication (Y)",
+        "X_Jittered": "Avg. Complexity Fit (C)",
+        "Y_Jittered": "Avg. Data Fit (D)",
         "category_clean": "Algorithm Family"
     }
 )
@@ -168,34 +194,50 @@ else:
     # Default opacity for clusters
     fig.update_traces(marker=dict(opacity=0.7, line=dict(width=1, color='DarkSlateGrey')))
 
-# 2. Add Quadrant Lines (Center at 5.5, 5.5 as per your Python code)
-center_val = 5.5
-fig.add_vline(x=center_val, line_width=2, line_dash="dash", line_color="grey")
-fig.add_hline(y=center_val, line_width=2, line_dash="dash", line_color="grey")
+# 2. Add Quadrant Lines (Using DYNAMIC MEDIANS)
+fig.add_vline(x=x_median, line_width=2, line_dash="dash", line_color="grey")
+fig.add_hline(y=y_median, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels
-# Quadrant 1 (Top Left) -> Simple & Sophisticated
-fig.add_annotation(x=2.5, y=8.5, text="<b>Simple &<br>Sophisticated</b>", showarrow=False, 
+# 3. Add Quadrant Labels (Dynamic Positioning)
+# We position labels based on the mid-points of the quadrants relative to the medians
+# Since scores are 0.0-1.0, we can estimate safe spots or calculate them relative to median
+x_max = df['Avg_Complexity_C'].max()
+x_min = df['Avg_Complexity_C'].min()
+y_max = df['Avg_DataFit_D'].max()
+y_min = df['Avg_DataFit_D'].min()
+
+# Quadrant 1 (Top Left) -> Simple & Robust
+# Low C (Left of Median), High D (Above Median)
+fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_median + (y_max-y_median)/2, 
+                   text="<b>Simple &<br>Robust</b>", showarrow=False, 
                    bgcolor="#e8f4f8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
 # Quadrant 2 (Top Right) -> Advanced & Sophisticated
-fig.add_annotation(x=7.5, y=8.5, text="<b>Advanced &<br>Sophisticated</b>", showarrow=False, 
+# High C (Right of Median), High D (Above Median)
+fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_median + (y_max-y_median)/2, 
+                   text="<b>Advanced &<br>Sophisticated</b>", showarrow=False, 
                    bgcolor="#e8f8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# Quadrant 3 (Bottom Left) -> Simple & Basic
-fig.add_annotation(x=2.5, y=1.5, text="<b>Simple &<br>Basic</b>", showarrow=False, 
+# Quadrant 3 (Bottom Left) -> Limited Applicability
+# Low C (Left of Median), Low D (Below Median)
+fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_min + (y_median-y_min)/2, 
+                   text="<b>Limited<br>Applicability</b>", showarrow=False, 
                    bgcolor="#f8e8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# Quadrant 4 (Bottom Right) -> Complex but Established
-fig.add_annotation(x=7.5, y=1.5, text="<b>Complex but<br>Established</b>", showarrow=False, 
+# Quadrant 4 (Bottom Right) -> Complex & Fragile
+# High C (Right of Median), Low D (Below Median)
+fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_min + (y_median-y_min)/2, 
+                   text="<b>Complex &<br>Fragile</b>", showarrow=False, 
                    bgcolor="#ffffe0", bordercolor="grey", borderwidth=1, opacity=0.8)
 
 # 4. Final Layout Config
+# Dynamic Range padding
+padding = 0.1
 fig.update_layout(
     height=750,
     margin=dict(l=40, r=40, t=60, b=40),
-    xaxis=dict(range=[0, 10.5], showgrid=True, dtick=1, title_font=dict(size=16, family="Arial Black")),
-    yaxis=dict(range=[0, 10.5], showgrid=True, dtick=1, title_font=dict(size=16, family="Arial Black")),
+    xaxis=dict(range=[-0.1, 1.1], showgrid=True, title_font=dict(size=16, family="Arial Black")),
+    yaxis=dict(range=[-0.1, 1.1], showgrid=True, title_font=dict(size=16, family="Arial Black")),
     legend=dict(title="Algorithm Family", orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
 )
 
@@ -213,10 +255,10 @@ The development of the framework was a result of a four-stage process:
 (4) quadrant-based visualization of the algorithms between model complexity, dataset characteristics and frequency of adoption
 
 **Visual Encoding:**
-* **X-Axis:** Complexity (1-10) - Ability to handle non-linearity.
-* **Y-Axis:** Sophistication (1-10) - Ability to handle real-world data issues (missing values, imbalance).
+* **X-Axis:** Average Complexity Fit (C) - Calculated empirically per family. Median Boundary: {x_median:.2f}
+* **Y-Axis:** Average Data Fit (D) - Calculated empirically per family. Median Boundary: {y_median:.2f}
 * **Bubble Size:** {size_title}
-* **Clusters:** 113 distinct algorithmic implementations from the literature, jittered for visibility.
+* **Clusters:** 113 distinct algorithmic implementations from the literature, jittered for visibility around their family average.
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
