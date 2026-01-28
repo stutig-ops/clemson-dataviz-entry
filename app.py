@@ -101,6 +101,9 @@ if selected_family != "All Families":
     count = subset['Family_Count'].iloc[0]
     maturity = subset['Calculated_Maturity'].iloc[0]
     
+    # Extract Scores
+    fam_c = subset['Avg_Complexity_C'].iloc[0]
+    fam_d = subset['Avg_DataFit_D'].iloc[0]
     avg_safety = subset['safety_suitability'].mean()
     avg_sched = subset['schedule_suitability'].mean()
     avg_cost = subset['cost_suitability'].mean()
@@ -108,6 +111,20 @@ if selected_family != "All Families":
     st.sidebar.subheader(f"📊 {selected_family}")
     st.sidebar.caption(f"**{count}** Implementations (M={maturity:.2f})")
     
+    # --- UPDATED SIDEBAR LAYOUT ---
+    
+    # 1. Core Metrics (C & D) - Always visible now
+    st.sidebar.markdown("##### 📐 Core Metrics")
+    col_cd1, col_cd2 = st.sidebar.columns(2)
+    with col_cd1:
+        st.metric("Complexity (C)", f"{fam_c:.2f}", help="Avg. Complexity Fit")
+    with col_cd2:
+        st.metric("Data Fit (D)", f"{fam_d:.2f}", help="Avg. Data Fit")
+    
+    st.sidebar.divider()
+    
+    # 2. Task Suitability Scores
+    st.sidebar.markdown("##### ✅ Task Suitability")
     col1, col2 = st.sidebar.columns(2)
     with col1:
         st.metric("Avg Safety", f"{avg_safety:.2f}")
@@ -212,12 +229,12 @@ fig.update_layout(
     # --- LEGEND CONFIGURATION ---
     legend=dict(
         title=dict(text="<b>Algorithm Family</b>", font=dict(size=16)),
-        orientation="v",       # Vertical Stack
-        yanchor="top", y=1,    # Align to top
-        xanchor="left", x=1.02,# Place outside right edge
-        font=dict(size=14),    # Increase font size
-        itemsizing="constant", # Force big markers regardless of bubble size
-        tracegroupgap=5        # Spacing between items
+        orientation="v",       
+        yanchor="top", y=1,    
+        xanchor="left", x=1.02,
+        font=dict(size=14),    
+        itemsizing="constant", 
+        tracegroupgap=5        
     )
 )
 
