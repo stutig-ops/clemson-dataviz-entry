@@ -47,30 +47,30 @@ def load_and_process_data():
     }
     df['category_clean'] = df['category'].map(name_map).fillna(df['category'])
 
-    # 2. DYNAMIC COORDINATE CALCULATION
-    # Instead of hard-coded 1-10 values, we calculate the MEAN scores for each category
-    # directly from the empirical data columns: 'complexity_fit_C' and 'data_fit_D'
-    category_stats = df.groupby('category_clean')[['complexity_fit_C', 'data_fit_D']].mean().reset_index()
+    # 2. CALCULATE MATURITY (M) DYNAMICALLY
+    family_counts = df['category_clean'].value_counts()
+    max_freq = family_counts.max() # Should be 29
     
-    # Rename for clarity
+    df['Family_Count'] = df['category_clean'].map(family_counts)
+    df['Calculated_Maturity'] = df['Family_Count'] / max_freq
+
+    # 3. DYNAMIC COORDINATE CALCULATION
+    category_stats = df.groupby('category_clean')[['complexity_fit_C', 'data_fit_D']].mean().reset_index()
     category_stats.rename(columns={
-        'complexity_fit_C': 'Avg_Complexity_C',
+        'complexity_fit_C': 'Avg_Complexity_C', 
         'data_fit_D': 'Avg_DataFit_D'
     }, inplace=True)
     
-    # Merge these averages back into the main dataframe
-    # Now every row (e.g., Study 1's SVM) gets the "SVM Family Average" as its coordinate base
     df = df.merge(category_stats, on='category_clean', how='left')
 
-    # 3. ADD JITTER (Deterministic)
-    # We jitter around the FAMILY AVERAGE coordinate
+    # 4. ADD JITTER (Deterministic)
     np.random.seed(42) 
-    jitter_strength = 0.03 # Small jitter since scale is 0.0-1.0 now (not 1-10)
+    jitter_strength = 0.03 
     
     df['X_Jittered'] = df['Avg_Complexity_C'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
     df['Y_Jittered'] = df['Avg_DataFit_D'] + np.random.uniform(-jitter_strength, jitter_strength, len(df))
     
-    # Calculate Medians for Quadrant Boundaries (Dynamic)
+    # Calculate Medians for Quadrant Boundaries
     x_median = df['Avg_Complexity_C'].median()
     y_median = df['Avg_DataFit_D'].median()
     
@@ -97,20 +97,16 @@ selected_family = st.sidebar.selectbox("Highlight Family:", algo_options, index=
 
 # Details Panel
 if selected_family != "All Families":
-    # Get stats for the family
     subset = df[df['category_clean'] == selected_family]
+    count = subset['Family_Count'].iloc[0]
+    maturity = subset['Calculated_Maturity'].iloc[0]
+    
     avg_safety = subset['safety_suitability'].mean()
     avg_sched = subset['schedule_suitability'].mean()
     avg_cost = subset['cost_suitability'].mean()
-    count = len(subset)
-    
-    # Get the coordinates for this family
-    fam_c = subset['Avg_Complexity_C'].iloc[0]
-    fam_d = subset['Avg_DataFit_D'].iloc[0]
 
     st.sidebar.subheader(f"📊 {selected_family}")
-    st.sidebar.caption(f"**{count}** Implementations found.")
-    st.sidebar.markdown(f"**Coordinates:** C={fam_c:.2f}, D={fam_d:.2f}")
+    st.sidebar.caption(f"**{count}** Implementations (M={maturity:.2f})")
     
     col1, col2 = st.sidebar.columns(2)
     with col1:
@@ -121,38 +117,30 @@ if selected_family != "All Families":
 
 # --- 5. VISUALIZATION LOGIC ---
 
-# Define Size Variable based on Context
+# Define Size Variable
 if task_context == "General Overview":
-    # In General mode, use Maturity or a fixed size
-    df['Size_Var'] = df['Maturity_M'] * 2 # Scale up for visibility
-    df['Size_Label'] = "Maturity: " + df['Maturity_M'].astype(str)
-    size_title = "Maturity (M)"
+    df['Size_Var'] = df['Calculated_Maturity'] * 30 
+    df['Size_Label'] = "Maturity: " + df['Calculated_Maturity'].round(2).astype(str)
+    size_title = "Maturity (Frequency)"
 elif task_context == "Safety Management":
-    df['Size_Var'] = df['safety_suitability'] * 20 # Scale factor for bubbles
+    df['Size_Var'] = df['safety_suitability'] * 30 
     df['Size_Label'] = df['safety_suitability'].round(2).astype(str)
     size_title = "Safety Score"
 elif task_context == "Schedule Optimization":
-    df['Size_Var'] = df['schedule_suitability'] * 20
+    df['Size_Var'] = df['schedule_suitability'] * 30
     df['Size_Label'] = df['schedule_suitability'].round(2).astype(str)
     size_title = "Schedule Score"
 elif task_context == "Cost Prediction":
-    df['Size_Var'] = df['cost_suitability'] * 20
+    df['Size_Var'] = df['cost_suitability'] * 30
     df['Size_Label'] = df['cost_suitability'].round(2).astype(str)
     size_title = "Cost Score"
 
 # Professional Muted Pastel Palette
 pastel_map = {
-    'ANN': '#D68C9F',                    # Deep Dusty Rose
-    'Bayesian Networks': '#A6C6CC',      # Powder Teal
-    'Boosting/Gradient': '#A3C1A3',      # Sage Green
-    'Decision Tree': '#BFB5C2',          # Lilac Grey
-    'Ensemble': '#E6C8C8',               # Dusty Rose
-    'Extremely Randomized Trees': '#D1D1AA', # Khaki Pastel
-    'KNN': '#9FA8DA',                    # Muted Periwinkle
-    'Naïve-Bayesian': '#C4AFAF',         # Mauve Taupe
-    'Random Forest': '#DDB8AC',          # Peach Grey
-    'Regression': '#ABC6D4',             # Slate Blue Pastel
-    'SVM': '#78909C'                     # Blue Grey
+    'ANN': '#D68C9F', 'Bayesian Networks': '#A6C6CC', 'Boosting/Gradient': '#A3C1A3',
+    'Decision Tree': '#BFB5C2', 'Ensemble': '#E6C8C8', 'Extremely Randomized Trees': '#D1D1AA',
+    'KNN': '#9FA8DA', 'Naïve-Bayesian': '#C4AFAF', 'Random Forest': '#DDB8AC',
+    'Regression': '#ABC6D4', 'SVM': '#78909C'
 }
 
 # --- GENERATE CLUSTER PLOT ---
@@ -169,7 +157,7 @@ fig = px.scatter(
         'category_clean': True, 'Size_Label': True, 'objective': True,
         'Avg_Complexity_C': ':.2f', 'Avg_DataFit_D': ':.2f'
     },
-    size_max=40, # Maximum bubble size
+    size_max=40,
     template="plotly_white",
     labels={
         "X_Jittered": "Avg. Complexity Fit (C)",
@@ -180,7 +168,7 @@ fig = px.scatter(
 
 # --- APPLY FORMATTING & QUADRANTS ---
 
-# 1. Spotlight Logic (Dimming unselected families)
+# 1. Spotlight Logic
 if selected_family != "All Families":
     for trace in fig.data:
         if trace.name == selected_family:
@@ -188,57 +176,49 @@ if selected_family != "All Families":
             trace.marker.line.width = 1
             trace.marker.line.color = 'black'
         else:
-            trace.marker.opacity = 0.1 # Dim others
+            trace.marker.opacity = 0.1
             trace.marker.line.width = 0
 else:
-    # Default opacity for clusters
     fig.update_traces(marker=dict(opacity=0.7, line=dict(width=1, color='DarkSlateGrey')))
 
-# 2. Add Quadrant Lines (Using DYNAMIC MEDIANS)
+# 2. Add Quadrant Lines
 fig.add_vline(x=x_median, line_width=2, line_dash="dash", line_color="grey")
 fig.add_hline(y=y_median, line_width=2, line_dash="dash", line_color="grey")
 
-# 3. Add Quadrant Labels (Dynamic Positioning)
-# We position labels based on the mid-points of the quadrants relative to the medians
-# Since scores are 0.0-1.0, we can estimate safe spots or calculate them relative to median
-x_max = df['Avg_Complexity_C'].max()
-x_min = df['Avg_Complexity_C'].min()
-y_max = df['Avg_DataFit_D'].max()
-y_min = df['Avg_DataFit_D'].min()
+# 3. Add Quadrant Labels
+x_max, x_min = df['Avg_Complexity_C'].max(), df['Avg_Complexity_C'].min()
+y_max, y_min = df['Avg_DataFit_D'].max(), df['Avg_DataFit_D'].min()
 
-# Quadrant 1 (Top Left) -> Simple & Robust
-# Low C (Left of Median), High D (Above Median)
 fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_median + (y_max-y_median)/2, 
                    text="<b>Simple &<br>Robust</b>", showarrow=False, 
                    bgcolor="#e8f4f8", bordercolor="grey", borderwidth=1, opacity=0.8)
-
-# Quadrant 2 (Top Right) -> Advanced & Sophisticated
-# High C (Right of Median), High D (Above Median)
 fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_median + (y_max-y_median)/2, 
                    text="<b>Advanced &<br>Sophisticated</b>", showarrow=False, 
                    bgcolor="#e8f8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
-
-# Quadrant 3 (Bottom Left) -> Limited Applicability
-# Low C (Left of Median), Low D (Below Median)
 fig.add_annotation(x=x_min + (x_median-x_min)/2, y=y_min + (y_median-y_min)/2, 
                    text="<b>Limited<br>Applicability</b>", showarrow=False, 
                    bgcolor="#f8e8e8", bordercolor="grey", borderwidth=1, opacity=0.8)
-
-# Quadrant 4 (Bottom Right) -> Complex & Fragile
-# High C (Right of Median), Low D (Below Median)
 fig.add_annotation(x=x_median + (x_max-x_median)/2, y=y_min + (y_median-y_min)/2, 
                    text="<b>Complex &<br>Fragile</b>", showarrow=False, 
                    bgcolor="#ffffe0", bordercolor="grey", borderwidth=1, opacity=0.8)
 
-# 4. Final Layout Config
-# Dynamic Range padding
-padding = 0.1
+# 4. Final Layout Config (BIG LEGEND ON RIGHT)
 fig.update_layout(
     height=750,
     margin=dict(l=40, r=40, t=60, b=40),
     xaxis=dict(range=[-0.1, 1.1], showgrid=True, title_font=dict(size=16, family="Arial Black")),
     yaxis=dict(range=[-0.1, 1.1], showgrid=True, title_font=dict(size=16, family="Arial Black")),
-    legend=dict(title="Algorithm Family", orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    
+    # --- LEGEND CONFIGURATION ---
+    legend=dict(
+        title=dict(text="<b>Algorithm Family</b>", font=dict(size=16)),
+        orientation="v",       # Vertical Stack
+        yanchor="top", y=1,    # Align to top
+        xanchor="left", x=1.02,# Place outside right edge
+        font=dict(size=14),    # Increase font size
+        itemsizing="constant", # Force big markers regardless of bubble size
+        tracegroupgap=5        # Spacing between items
+    )
 )
 
 st.plotly_chart(fig, use_container_width=True)
