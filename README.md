@@ -9,18 +9,19 @@ This project challenges the "accuracy is everything" mindset in construction AI.
 
 ## Methodology (Reproducibility)
 This visualization was built using an open-source Python stack to ensure full transparency and reproducibility.
-* **Data Processing:** `Pandas` for aggregating complexity/data-fit scores.
-* **Visualization:** `Plotly Express` for the interactive quadrant chart.
-* **Deployment:** `Streamlit` for the web interface.
 
-### Reproducibility
+* **Data Processing:** **Pandas & NumPy** for data cleaning, score aggregation, and jittering logic.
+* **Visualization:** **Plotly Express** for the interactive quadrant chart.
+* **Deployment:** **Streamlit** for the web interface.
+
+## Reproducibility
 * **Dashboard Code:** `app.py`
 * **Analysis Pipeline:** `analysis_pipeline.ipynb` (Contains the full data cleaning and score calculation logic).
 
-### How to Run Locally
-1. Clone this repository.
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run the app: `streamlit run app.py`
+## How to Run Locally
+1.  Clone this repository.
+2.  Install dependencies: `pip install -r requirements.txt`
+3.  Run the app: `streamlit run app.py`
 
 ## 📂 Files
 * `app.py`: The main source code for the visualization dashboard.
