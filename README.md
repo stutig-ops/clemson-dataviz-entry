@@ -10,9 +10,9 @@ A systematic literature review (SLR) of 30 foundational studies revealed that 39
 Grounded in 113 algorithmic implementations, the ML Algorithm Selection Quadrant provides a prescriptive, data‑driven framework to guide construction researchers and practitioners. 
 It maps algorithms across two empirically derived dimensions—Complexity Fit (C) and Data Fit (D)—that reflect both their modeling capabilities and their robustness to challenging construction datasets. 
 The quadrant serves primarily three goals:
-i.	“Bridge the Gap” - Democratizing ML selection: Translating abstract algorithmic properties into a concrete, actionable framework beyond trial-and-error methods
-ii.	Expose hidden “trade-offs”: Accuracy is not the only parameter for selecting a technique, exhibiting how high complexity often comes at the cost of data fragility.
-iii.	Decision-making support: Evidence-based guide to help researchers and practitioners select the right algorithm aligned with a specific dataset and task, rather than popularity.
+* **i.	“Bridge the Gap”** - Democratizing ML selection: Translating abstract algorithmic properties into a concrete, actionable framework beyond trial-and-error methods
+* **ii.	Expose hidden “trade-offs”:** Accuracy is not the only parameter for selecting a technique, exhibiting how high complexity often comes at the cost of data fragility.
+* **iii.	Decision-making support:** Evidence-based guide to help researchers and practitioners select the right algorithm aligned with a specific dataset and task, rather than popularity.
 
 
 ## Methodology (Reproducibility)
