@@ -270,17 +270,15 @@ st.divider()
 st.caption(f"""
 **Methodology:**
 Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) of 30 studies (113 algorithm implementations). The framework quantifies algorithm suitability through four core dimensions derived from 16 coded indicators:
-
 1.  **Complexity Fit (C):** Ability to model non-linear/complex relationships. Calculated as: $0.4 \\times NonLinearity + 0.4 \\times ComplexPatterns + 0.2 \\times HighDimensional$.
 2.  **Data Fit (D):** Robustness to data quality issues. Calculated as: $0.3 \\times MissingData + 0.3 \\times Imbalance + 0.2 \\times SmallN + 0.2 \\times LargeN$.
 3.  **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
 4.  **Maturity (M):** Empirical adoption frequency normalized to [0, 1].
-5.  **Safety Suitability Score:** $0.35 \\times Imbalance + 0.25 \\times Interpretability + 0.20 \\times ComplexNonLinear + 0.20 \\times MissingData$.
-6.  **Schedule Suitability Score:** $0.30 \\times Imbalance + 0.25 \\times ComplexNonLinear + 0.20 \\times LargeN + 0.15 \\times TemporalSeq + 0.10 \\times NonLinearity$.
-7.  **Cost Suitability Score:** $0.30 \\times NonLinearity + 0.25 \\times Interpretability + 0.20 \\times Uncertainty + 0.15 \\times Prediction + 0.10 \\times LargeN$.
-
+Task-Suitability Scoring Mechanism enabling users to identify which algorithms empirically perform best for the problem they are solving:
+**Safety Suitability Score:** $0.35 \\times Imbalance + 0.25 \\times Interpretability + 0.20 \\times ComplexNonLinear + 0.20 \\times MissingData$.
+**Schedule Suitability Score:** $0.30 \\times Imbalance + 0.25 \\times ComplexNonLinear + 0.20 \\times LargeN + 0.15 \\times TemporalSeq + 0.10 \\times NonLinearity$.
+**Cost Suitability Score:** $0.30 \\times NonLinearity + 0.25 \\times Interpretability + 0.20 \\times Uncertainty + 0.15 \\times Prediction + 0.10 \\times LargeN$.
 **Validation:** Pearson correlation ($|r|=0.353$) confirmed C and D are orthogonal dimensions, justifying the quadrant axes defined by their median values ({x_median:.2f}, {y_median:.2f}).
-
 **Visual Encoding:**
 * **X-Axis:** Average Complexity Fit (C). Median Boundary: {x_median:.2f}
 * **Y-Axis:** Average Data Fit (D). Median Boundary: {y_median:.2f}
@@ -289,6 +287,7 @@ Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) o
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
+
 
 
 
