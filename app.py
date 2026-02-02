@@ -275,7 +275,7 @@ Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) o
 3.  **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
 4.  **Maturity (M):** Empirical adoption frequency normalized to [0, 1].
 
-*Task-Suitability Scoring Mechanism ($S$):* enabling users to identify which algorithms empirically perform best for the problem they are solving:
+**Task-Suitability Scoring Mechanism ($S$):** enabling users to identify which algorithms empirically perform best for the problem they are solving:
 * **Safety ($S_{{safety}}$):** $0.35 \\times Imbalance + 0.25 \\times Interpretability + 0.20 \\times ComplexNonLinear + 0.20 \\times MissingData$.
 * **Schedule ($S_{{schedule}}$):** $0.30 \\times Imbalance + 0.25 \\times ComplexNonLinear + 0.20 \\times LargeN + 0.15 \\times TemporalSeq + 0.10 \\times NonLinearity$.
 * **Cost ($S_{{cost}}$):** $0.30 \\times NonLinearity + 0.25 \\times Interpretability + 0.20 \\times Uncertainty + 0.15 \\times Prediction + 0.10 \\times LargeN$.
@@ -290,6 +290,7 @@ Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) o
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
+
 
 
 
