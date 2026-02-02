@@ -13,7 +13,7 @@ st.set_page_config(
 # --- 2. HEADER & ABSTRACT ---
 st.title("ML Algorithm Selection Quadrant for Construction")
 st.markdown("""
-**Visualization Narrative:** In a systematic literature review investigating 30 studies discussing applications of ML algorithms for construction industry 113 algorithmic implementations were grouped in 11 categories. 
+**Visualization Narrative:** In a systematic literature review investigating 30 studies discussing applications of ML algorithms for construction industry 113 algorithmic implementations were grouped in 10 categories. 
 A trade-off was identified and each algorithmic family was mapped to the quadrant, with the horizontal axis representing the average Complexity Fit (C) per family and the vertical axis representing the average Data Fit (D). 
 X Axis: **Complexity Fit (C)** - measures the ability to capture complex, non‑linear, and high‑dimensional relationships
 Y-Axis: **Data Fit (D)** - measures robustness to real-world construction data challenges - missing values, class imbalance, sample‑size variation
@@ -37,7 +37,6 @@ def load_and_process_data():
         'Boosting/Gradient': 'Boosting/Gradient',
         'Decision Tree': 'Decision Tree',
         'Ensemble': 'Ensemble',
-        'Extremely Randomized Trees': 'Extremely Randomized Trees',
         'Naïve-Bayesian Classifier': 'Naïve-Bayesian',
         'Naïve-Bayesian Classifier ': 'Naïve-Bayesian',
         'Random Forest': 'Random Forest',
@@ -157,7 +156,6 @@ pastel_map = {
     'Boosting/Gradient': '#A3C1A3',                 # Sage Green
     'Decision Tree': '#BFB5C2',                     # Lilac Grey
     'Ensemble': '#E6C8C8',                          # Dusty Rose
-    'Extremely Randomized Trees': '#D1D1AA',        # Khaki Pastel
     'k-Nearest Neighbour (KNN)': '#9FA8DA',         # Muted Periwinkle
     'Naïve-Bayesian': '#C4AFAF',                    # Mauve Taupe
     'Random Forest': '#DDB8AC',                     # Peach Grey
@@ -291,6 +289,7 @@ Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) o
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
+
 
 
 
