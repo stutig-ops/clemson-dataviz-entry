@@ -1,11 +1,19 @@
-# ML Algorithm Selection Quadrant for Construction Industry - Stuti Garg
+# ML Algorithm Selection Quadrant for Construction - Stuti Garg
 **Graduate Student Data Visualization Competition 2026**
 
 ### 🔗 Live Dashboard
 [Click here to launch the interactive App](https://clemson-dataviz-entry-mlalgoclusters.streamlit.app/)
 
 ### Overview
-This project challenges the "accuracy is everything" mindset in construction AI. By synthesizing data from 30+ empirical studies, and mapping algorithms on two axes: Complexity Fit vs. Data Fit - the visual demonstrates that **Ensemble methods** (like Random Forest) are the industry "Gold Standard" because they balance complexity with the robustness needed for imperfect construction data. It synthesizes data from 30+ studies to 
+Machine Learning (ML) in construction often presents a “paradox of choice,” making it difficult for practitioners to determine which algorithm best fits their data and task. 
+A systematic literature review (SLR) of 30 foundational studies revealed that 39% of algorithms in construction research are selected based on precedent, while 16% lack any stated rationale (Garg et al., 2025). 
+Grounded in 113 algorithmic implementations, the ML Algorithm Selection Quadrant provides a prescriptive, data‑driven framework to guide construction researchers and practitioners. 
+It maps algorithms across two empirically derived dimensions—Complexity Fit (C) and Data Fit (D)—that reflect both their modeling capabilities and their robustness to challenging construction datasets. 
+The quadrant serves primarily three goals:
+i.	“Bridge the Gap” - Democratizing ML selection: Translating abstract algorithmic properties into a concrete, actionable framework beyond trial-and-error methods
+ii.	Expose hidden “trade-offs”: Accuracy is not the only parameter for selecting a technique, exhibiting how high complexity often comes at the cost of data fragility.
+iii.	Decision-making support: Evidence-based guide to help researchers and practitioners select the right algorithm aligned with a specific dataset and task, rather than popularity.
+
 
 ## Methodology (Reproducibility)
 This visualization was built using an open-source Python stack to ensure full transparency and reproducibility.
