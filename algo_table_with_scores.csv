@@ -35,7 +35,7 @@ S13,Random Forest ,Classification,Carried Weight by Construction Worker,Random F
 S13,Gradient Boosting Model (GBM),Classification,Carried Weight by Construction Worker,Boosting/Gradient ,1,1,1,0,0,0,medium,0,0,1,1,0,0.8,0.6,0.5,1.0,5,5,0.875,0.65,0.425
 S13,Light Gradient Boosting Model (GBM),Classification,Carried Weight by Construction Worker,Boosting/Gradient ,1,1,1,1,0,0,medium,0,0,1,1,0,1.0,0.6,0.5,1.0,5,5,0.875,0.65,0.425
 S14,Decision Tree,Classification,Extent of Time Overrun,Decision Tree,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,3,4,0.45,0.35,0.55
-S14,Naïve-Bayesian Classifier,Classification,Extent of Time Overrun,Naïve-Bayesian Classifier ,1,0,0,0,0,1,high,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
+S14,Naïve-Bayesian Classifier,Classification,Extent of Time Overrun,Naïve-Bayesian Classifier,1,0,0,0,0,1,high,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
 S15,Bayesian networks,Classification,Factor selection for delay,Bayesian networks,1,0,0,0,0,1,high,1,0,0,0,0,0.0,0.2,1.0,1.0,5,5,0.25,0.0,0.45
 S15,Decision Tree (DT - Inductive learning algorithm called the wrapper approach (ML) - C4.5),Classification,Factor selection for delay,Decision Tree,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,3,4,0.45,0.35,0.55
 S16,Binary Particle Swarm Optimization(BPSO)+AdaBoost+SVM,Classification,Degree of damage risk,Ensemble,1,1,1,1,0,0,medium,1,0,0,1,0,1.0,0.5,0.5,1.0,7,8,0.675,0.65,0.425
@@ -61,7 +61,7 @@ S20,XGBoost optimized by Grid Search (GS-XGBoost),Prediction,Carbon Emissions,Bo
 S21,Elastic-Net Regression,Prediction,Residential Construction Industry Demand,Regression,1,0,0,1,1,0,high,1,0,0,0,0,0.2,0.2,1.0,1.0,2,3,0.25,0.0,0.4
 S21,Artificial Neural Networks (ANN),Prediction,Residential Construction Industry Demand,Artificial Neural Networks (ANN),1,1,0,0,0,0,low,0,0,0,1,0,0.8,0.0,0.0,1.0,8,6,0.2,0.35,0.44999999999999996
 S21,Eureqa,Prediction,Residential Construction Industry Demand,Regression,1,1,0,0,0,0,high,1,0,0,1,0,0.8,0.2,1.0,1.0,2,3,0.45,0.35,0.7000000000000001
-S21,Extremely Randomized Trees,Prediction,Residential Construction Industry Demand,Extremely Randomized Trees,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.85,0.6749999999999999
+S21,Extremely Randomized Trees,Prediction,Residential Construction Industry Demand,Random Forest,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.85,0.6749999999999999
 S21,Support Vector Machine (SVM),Prediction,Residential Construction Industry Demand,Support Vector Machine (SVM),1,1,0,0,0,0,medium,1,0,0,1,0,0.8,0.2,0.5,1.0,5,5,0.325,0.35,0.575
 S21,Random Forest,Prediction,Residential Construction Industry Demand,Random Forest,1,1,1,0,0,0,medium,0,1,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.85,0.6749999999999999
 S21,Decision Tree,Prediction,Residential Construction Industry Demand,Decision Tree,1,1,0,0,0,0,high,1,0,0,0,0,0.4,0.2,1.0,1.0,3,4,0.25,0.1,0.7000000000000001
@@ -77,7 +77,7 @@ S22,Support Vector Machine (SVM),Prediction,Project Duration Cost Energy,Support
 S22,Decision Tree,Prediction,Project Duration Cost Energy,Decision Tree,1,1,0,0,0,0,High,1,0,1,1,0,0.8,0.5,1.0,1.0,3,4,0.65,0.35,0.7000000000000001
 S22,Random Forest ,Prediction,Project Duration Cost Energy,Random Forest,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.65,0.575
 S22,Bagging Regression,Prediction,Project Duration Cost Energy,Ensemble,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,7,8,0.875,0.65,0.575
-S22,Extremely Randomized Trees,Prediction,Project Duration Cost Energy,Ensemble,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,7,8,0.875,0.65,0.575
+S22,Extremely Randomized Trees,Prediction,Project Duration Cost Energy,Random Forest,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,6,7,0.875,0.65,0.575
 S22,AdaBoost,Prediction,Project Duration Cost Energy,Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.575
 S22,Stochastic Gradient Tree Boosting (SGTB),Prediction,Project Duration Cost Energy,Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.575
 S23,CatBoost,Classification,Levels of Time Overrun (TO),Boosting/Gradient ,1,1,1,0,0,0,Medium,1,0,1,1,0,0.8,0.8,0.5,1.0,5,5,0.875,0.65,0.425
