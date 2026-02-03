@@ -19,7 +19,7 @@ X Axis: **Complexity Fit (C)** - measures the ability to capture complex, non‑
 Y-Axis: **Data Fit (D)** - measures robustness to real-world construction data challenges - missing values, class imbalance, sample‑size variation
 * **Quadrant 1:** Advanced and Sophisticated: (high C, high D) – Best of Both: Strong non‑linear modeling with comparatively better robustness to missing values, imbalance, and varying sample sizes. These families also have the largest bubbles, reflecting their high empirical maturity/adoption in the construction ML literature.
 * **Quadrant 2:** Simple and Robust: (low C, high D) These methods are better suited to linear relationships within variables/features and rely on clean, balanced data; they are unable to capture the inherent nonlinearity of construction data.
-* **Quadrant 3:** Limited Applicability: (low C, low D) Weaker data fit despite modest complexity, suggesting applicability to a limited application.
+* **Quadrant 3:** Limited Applicability: (low C, low D) Weaker data fit despite modest complexity, suggesting applicability to specific objective.
 * **Quadrant 4:** Complex and Fragile: (high C, low D) Exceptionally high in their ability to manage complex dataset interactions, with not much emphasis on handling missing data or rare event predictions. SVM with kernel tricks, can handle multi-dimensional datasets that require synthetic oversampling to mitigate imbalanced classes.
 """)
 
@@ -290,6 +290,7 @@ Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) o
 
 For full reproducibility, view the [Source Code & Analysis Pipeline](https://github.com/stutig-ops/clemson-dataviz-entry).
 """)
+
 
 
 
