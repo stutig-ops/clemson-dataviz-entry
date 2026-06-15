@@ -270,10 +270,11 @@ st.divider()
 st.caption(f"""
 **Methodology:**
 Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) of 30 studies (113 algorithm implementations). The framework quantifies algorithm suitability through four core dimensions derived from 16 coded indicators:
-1.  **Complexity Fit (C):** Ability to model non-linear/complex relationships. Calculated as: $0.4 \\times NonLinearity + 0.4 \\times ComplexPatterns + 0.2 \\times HighDimensional$.
-2.  **Data Fit (D):** Robustness to data quality issues. Calculated as: $0.3 \\times MissingData + 0.3 \\times Imbalance + 0.2 \\times SmallN + 0.2 \\times LargeN$.
-3.  **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
-4.  **Maturity (M):** Empirical adoption frequency normalized to [0, 1].
+
+1. **Complexity Fit (C):** Ability to model non-linear/complex relationships. Calculated as: $0.4 \\times \\text{NonLinearity} + 0.4 \\times \\text{ComplexPatterns} + 0.2 \\times \\text{HighDimensional}$.
+2. **Data Fit (D):** Robustness to data quality issues. Calculated as: $0.3 \\times \\text{MissingData} + 0.3 \\times \\text{Imbalance} + 0.2 \\times \\text{SmallN} + 0.2 \\times \\text{LargeN}$.
+3. **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
+4. **Maturity (M):** Empirical adoption frequency normalized to [0, 1].
 
 **Task-Suitability Scoring Mechanism ($S$):** enabling users to identify which algorithms empirically perform best for the problem they are solving:
 * **Safety ($S_{{safety}}$):** $0.35 \\times Imbalance + 0.25 \\times Interpretability + 0.20 \\times ComplexNonLinear + 0.20 \\times MissingData$.
