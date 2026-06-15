@@ -270,6 +270,7 @@ st.divider()
 st.caption(f"""
 **Methodology:**
 Developed from a PRISMA-guided Systematic Literature Review (Garg et al. 2025) of 30 studies (113 algorithm implementations). The framework quantifies algorithm suitability through four core dimensions derived from 16 coded indicators:
+
 1.  **Complexity Fit (C):** Ability to model non-linear/complex relationships. Calculated as: $0.4 \\times NonLinearity + 0.4 \\times ComplexPatterns + 0.2 \\times HighDimensional$.
 2.  **Data Fit (D):** Robustness to data quality issues. Calculated as: $0.3 \\times MissingData + 0.3 \\times Imbalance + 0.2 \\times SmallN + 0.2 \\times LargeN$.
 3.  **Interpretability (I):** Transparency level: High (1.0), Medium (0.5), or Low (0.0).
